@@ -142,6 +142,9 @@ if isdirectory(vundlehome) && &loadplugins
 
   noremap <buffer> <silent> <F7> :<C-u>PFormatToggle<cr>
   inoremap <buffer> <silent> <F7> <C-o>:PFormatToggle<cr>
+
+  " Terraform integration
+  Plugin 'hashivim/vim-terraform'
 endif
 
 if $POWERLINE_BINDINGS != ""
@@ -264,7 +267,7 @@ au FileType javascript set shiftwidth=2 tabstop=2  " YAML recommendation
 au FileType vim set shiftwidth=2 tabstop=2
 au FileType css set shiftwidth=2 tabstop=2
 au FileType scss set shiftwidth=2 tabstop=2
-au FileType tf,tfvars set shiftwidth=2 tabstop=2
+au FileType terraform set shiftwidth=2 tabstop=2
 
 au FileType text,markdown,html,htmldjango set textwidth=0 shiftwidth=2 tabstop=2
 au FileType text,html,htmldjango set noautoindent nosmartindent
