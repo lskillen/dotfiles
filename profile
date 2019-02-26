@@ -48,3 +48,18 @@ command -v pulseaudio &>/dev/null && {
 }
 
 start-agent
+
+gpg-agent --daemon
+export GPG_AGENT_INFO=${HOME}/.gnupg/S.gpg-agent:$(pgrep gpg-agent):1
+export GPG_TTY=`tty`
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+export PATH=$PATH:/usr/local/go/bin:$HOME/.go/bin
+
+type chef &>dev/null && {
+  eval "$(chef shell-init `basename $SHELL`)"
+}

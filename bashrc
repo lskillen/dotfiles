@@ -117,6 +117,7 @@ set -o vi
 
 test "$PATH" == *"$HOME/.bin"* || export PATH="$PATH:$HOME/.bin"
 test "$PATH" == *"$HOME/.chefdk/gem/ruby/2.3.0/bin"* || export PATH="$PATH:$HOME/.chefdk/gem/ruby/2.3.0/bin"
+test "$PATH" == *"$HOME/.gem/ruby/2.3.0/bin"* || export PATH="$PATH:$HOME/.gem/ruby/2.3.0/bin"
 export EDITOR=vim
 export VISUAL=vim
 export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
@@ -156,3 +157,13 @@ command -v direnv &>/dev/null && eval "$(direnv hook bash)"
 if [ -f "$HOME/.bashrc.local" ]; then
     source "$HOME/.bashrc.local"
 fi
+
+# added by travis gem
+[ -f /home/lskillen/.travis/travis.sh ] && source /home/lskillen/.travis/travis.sh
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+[ -n "$TMUX" ] && export TERM=screen-256color
+
+export GOPATH="$HOME/.go"

@@ -145,6 +145,12 @@ if isdirectory(vundlehome) && &loadplugins
 
   " Terraform integration
   Plugin 'hashivim/vim-terraform'
+
+  " Linting
+  Plugin 'v0rp/ale'
+  let b:ale_fixers = ['prettier', 'eslint']
+
+  " Plugin 'ambv/black'
 endif
 
 if $POWERLINE_BINDINGS != ""
@@ -235,7 +241,7 @@ endif
 "hi Normal ctermbg=NONE
 try
   let g:solarized_termtrans=1
-  let g:solarized_termcolors=16
+  let g:solarized_termcolors=256
   color solarized
 catch
   color Tomorrow-Night-Bright
@@ -254,20 +260,23 @@ autocmd BufRead *.csl
 autocmd BufRead *.g4
   \ set filetype=g4
 
-au FileType python set textwidth=79          " PEP-8 Friendly
+au FileType python set textwidth=88
 
 au FileType eruby,ruby set textwidth=79            " Ruby Friendly
 au FileType eruby,ruby set shiftwidth=2 tabstop=2  " Ruby standard
 au FileType eruby,ruby set re=1                    " Use older regex engine for Ruby
 
-au FileType yaml set shiftwidth=2 tabstop=2  " YAML recommendation
+au FileType yaml,yml set shiftwidth=2 tabstop=2  " YAML recommendation
 au FileType json set shiftwidth=2 tabstop=2  " JSON recommendation
 au FileType javascript set shiftwidth=2 tabstop=2  " YAML recommendation
 
+au FileType bash,sh set shiftwidth=2 tabstop=2
 au FileType vim set shiftwidth=2 tabstop=2
 au FileType css set shiftwidth=2 tabstop=2
 au FileType scss set shiftwidth=2 tabstop=2
 au FileType terraform set shiftwidth=2 tabstop=2
+au FileType groovy set shiftwidth=2 tabstop=2
+au FileType xml set shiftwidth=2 tabstop=2
 
 au FileType text,markdown,html,htmldjango set textwidth=0 shiftwidth=2 tabstop=2
 au FileType text,html,htmldjango set noautoindent nosmartindent

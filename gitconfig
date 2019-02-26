@@ -14,6 +14,8 @@
 [core]
     editor = vim
     whitespace = trailing-space, space-before-tab
+[diff]
+    renameLimit=10000
 [merge]
     tool = kdiff3
 [format]
@@ -40,6 +42,7 @@
 
 [commit]
     gpgsign = true
+    program = gpg2
 [filter "lfs"]
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
