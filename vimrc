@@ -260,6 +260,7 @@ autocmd BufRead *.csl
 autocmd BufRead *.g4
   \ set filetype=g4
 
+au FileType markdown set textwidth=80
 au FileType python set textwidth=88
 
 au FileType eruby,ruby set textwidth=79            " Ruby Friendly

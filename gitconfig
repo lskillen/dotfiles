@@ -50,3 +50,5 @@
     required = true
 [merge "ours"]
     driver = true
+[rerere]
+    autoupdate = true

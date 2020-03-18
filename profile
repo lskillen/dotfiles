@@ -60,6 +60,8 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 export PATH=$PATH:/usr/local/go/bin:$HOME/.go/bin
 
-type chef &>dev/null && {
+type chef &>/dev/null && {
   eval "$(chef shell-init `basename $SHELL`)"
 }
+
+export PATH="$HOME/.cargo/bin:$PATH"

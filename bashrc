@@ -167,3 +167,5 @@ export PATH="$PATH:$HOME/.rvm/bin"
 [ -n "$TMUX" ] && export TERM=screen-256color
 
 export GOPATH="$HOME/.go"
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
