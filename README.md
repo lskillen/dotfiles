@@ -1,3 +1,12 @@
+Disclaimer
+----------
+
+USE THESE DOTFILES AT YOUR OWN RISK.  These dotfiles meet my own requirements,
+but they may not meet yours (or worse, ruin them).  Subsequent changes may break
+your environment and I cannot be held responsible for it doing so (feel free to
+send gripes about it though, and I'll try to help fix it.) Also, the Python
+code is terrible; written hastily in early 2013. HERE BE DRAGONS! :)
+
 Dotfiles
 ========
 
@@ -7,8 +16,6 @@ Hi!  This is the repository for my dotfiles setup, including:
 - Solarized colourscheme for both vim and gnome-terminal [desktop].
 - Installation of system-wide packages (see packages.txt) [desktop].
 - Installation of python packages (see requirements.txt).
-- YouCompleteMe for clang-based semantic completion of code [desktop].
-- The "libgcrypt11" package for ubuntu 15.04 (for spotify, gah) [desktop].
 
 Please refer the simple/extended usage to see how this works.
 
@@ -66,10 +73,3 @@ Further Reading
 
 Check out: http://dotfiles.github.io/
 
-Disclaimer
-----------
-
-USE THESE DOTFILES AT YOUR OWN RISK.  These dotfiles meet my own requirements,
-but they may not meet yours (or worse, ruin them).  Subsequent changes may break
-your environment and I cannot be held responsible for it doing so (feel free to
-send gripes about it though, and I'll try to help fix it.)
