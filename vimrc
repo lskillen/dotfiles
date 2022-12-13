@@ -107,12 +107,6 @@ if isdirectory(vundlehome) && &loadplugins
 
   " Terraform integration
   Plugin 'hashivim/vim-terraform'
-
-  " Linting
-  Plugin 'v0rp/ale'
-  let b:ale_fixers = ['prettier', 'eslint']
-
-  " Plugin 'ambv/black'
 endif
 
 if $POWERLINE_BINDINGS != ""

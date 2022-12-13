@@ -1,6 +1,5 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import errno
-import itertools
 import os
 import logging
 import shutil
@@ -54,8 +53,8 @@ class SymLinker(object):
             def not_dotfile(x):
                 return not x.startswith('.')
 
-            listdir = itertools.ifilter(not_ignored, listdir)
-            listdir = itertools.ifilter(not_dotfile, listdir)
+            listdir = filter(not_ignored, listdir)
+            listdir = filter(not_dotfile, listdir)
 
         for name in sorted(listdir):
             rel_path = os.path.join(path, name) if path else name

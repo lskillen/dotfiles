@@ -13,7 +13,7 @@ Dotfiles
 Hi!  This is the repository for my dotfiles setup, including:
 
 - Highly customised vim installation with vundle + plugins (see vimrc)
-- Solarized colourscheme for both vim and gnome-terminal [desktop].
+- Solarized colourscheme for vim [desktop].
 - Installation of system-wide packages (see packages.txt) [desktop].
 - Installation of python packages (see requirements.txt).
 
@@ -23,32 +23,24 @@ Installation
 ------------
 
 - Clone
-- Execute setup.sh (from anywhere, see extended usage for more options).
+- Execute packages.sh as sudo/root (see packages.txt for what is installed).
+- Execute dotfiles.sh (from anywhere, see extended usage for more options).
 - Enjoy!
-
-The default setup will install for desktop environments and MUST be run under
-sudo in order to install system packages (etc.)
 
 Extended Usage
 --------------
 
 ```
-Usage: ./setup.sh [options]
+Usage: ./setup_dotfiles.sh [options]
   -e <stages(s)> A CSV-list of stages to exclude (default: ).
                    See -i for a full list of stages.
   -f             Force setup (by default anything that has already been setup
                    before will be skipped.)
-  -m <mode>      Mode to setup (desktop/server, default: desktop)
-                   This influences what is installed, where server mode
-                   is for headless or terminal-only servers, possibly
-                   without sudo access.  See -i for a full list of stages.
   -i <stage(s)> A CSV-list of stages to execute (default: all)
                    Stages (asterisks are desktop-only):
                     - dotfiles: Link dotfiles.
-                    * fonts: Setup terminal fonts.
-                    * libgcrypt11: Setup libgcrypt11 (Ubuntu 15.04+ only).
-                    * packages: Install packages from packages.txt
-                    - pip: Install pip/python packages from requirements.txt
+                    - fonts: Setup terminal fonts.
+                    - vundle: Install Vim Bundle (Vundle) plugins.
                    E.g. to only link dotfiles, use -i dotfiles.
   -h           Display usage (this text)
 ```
