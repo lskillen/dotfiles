@@ -123,10 +123,19 @@ export VISUAL=vim
 export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
 export PYTHONDONTWRITEBYTECODE=1
 export SOLVE_TIMEOUT=300
+export AWS_VAULT_PASS_PREFIX=aws-vault
+export AWS_VAULT_BACKEND=pass
 
-command -v pip &>/dev/null
-if [ $? -eq 0 ]; then
-    export POWERLINE_HOME="$(pip show powerline-status | grep Location: | awk '{ print $2 }')"
+if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
+    powerline-daemon -q
+
+fi
+
+if [ -z "$POWERLINE_HOME" ]; then
+  command -v pip &>/dev/null
+  if [ $? -eq 0 ]; then
+      export POWERLINE_HOME="$(pip show powerline-status | grep Location: | awk '{ print $2 }')"
+  fi
 fi
 
 if [ -z "$POWERLINE_HOME" ]; then
@@ -169,3 +178,19 @@ export PATH="$PATH:$HOME/.rvm/bin"
 export GOPATH="$HOME/.go"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+alias run-ngrok="dc run --service-ports --rm ngrok"
+alias run-web="aws-vault exec dev-lee-instance -- dc up --build web"
+alias run-web-nodebug="DEBUG=false aws-vault exec dev-lee-instance -- dc up --build web"
+alias run-web-jit="JIT_ASSETS=true aws-vault exec dev-lee-instance -- dc up --build web"
+alias run-dd="aws-vault exec dev-lee-instance -- dc up --build ddagent"
+alias run-worker="aws-vault exec dev-lee-instance -- dc up --build worker"
+alias run-command="dc run web python -m cloudsmith $@"
+alias run-shell="run-command shell_plus $@"
+alias run-makemigrations="run-command makemigrations $@"
+alias run-migrate="run-command migrate $@"
+alias run-bash="dc run --rm web bash"

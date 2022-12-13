@@ -21,7 +21,7 @@ if isdirectory(vundlehome) && &loadplugins
   " the source of a token) and C^T (to jump back up one level).
   " Requires: sudo apt-get install exuberant-ctags
   Plugin 'xolox/vim-misc'
-  Plugin 'xolox/vim-easytags'
+  " Plugin 'xolox/vim-easytags'
   Plugin 'majutsushi/tagbar'
   let tagshome = vimhome."/tags"
   exec 'autocmd FileType * set tags='.tagshome
