@@ -192,7 +192,6 @@ Usage: ./$self_name [options]
                     * packages: Install packages from packages.txt
                     - pip: Install pip/python packages from requirements.txt
                     - vundle: Install Vim Bundle (Vundle) plugins.
-                    * ycm: Install YouCompleteMe (requires vundle installation).
                    E.g. to only link dotfiles, use -i dotfiles.
   -h           Display usage (this text)
 
@@ -237,7 +236,6 @@ trap graceful_exit SIGINT SIGTERM
 trap finish exit
 
 setup_packages
-setup_ycm "true"
 
 # Check required tools
 tool_exists cmake
@@ -249,7 +247,6 @@ setup_dotfiles
 setup_pip
 setup_vundle
 setup_fonts
-setup_ycm
 
 echo
 echo "You're ready to rock!"
