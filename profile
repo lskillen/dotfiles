@@ -57,47 +57,17 @@ export PYTHONDONTWRITEBYTECODE=1
 export AWS_VAULT_PASS_PREFIX=aws-vault
 export AWS_VAULT_BACKEND=pass
 export GOPATH="$HOME/.go"
-export PATH=$PATH:/usr/local/go/bin:$HOME/.go/bin
-export PATH="$HOME/.cargo/bin:$PATH"
+test "$PATH" == *"$HOME/.go/bin" || export PATH=$PATH:/usr/local/go/bin:$HOME/.go/bin
+test "$PATH" == *"$HOME/.cargo/bin"* || export PATH="$HOME/.cargo/bin:$PATH"
+test "$PATH" == *"$HOME/.bin"* || export PATH="$PATH:$HOME/.bin"
 
 set -o vi
 
-test "$PATH" == *"$HOME/.bin"* || export PATH="$PATH:$HOME/.bin"
 
-if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
-    powerline-daemon -q
-
-fi
-
-if [ -z "$POWERLINE_HOME" ]; then
-  command -v pip &>/dev/null
-  if [ $? -eq 0 ]; then
-      export POWERLINE_HOME="$(pip show powerline-status | grep Location: | awk '{ print $2 }')"
-  fi
-fi
-
-if [ -z "$POWERLINE_HOME" ]; then
-    export POWERLINE_HOME="$HOME/.vim/bundle/powerline"
-fi
-
-POWERLINE_SCRIPTS="$POWERLINE_HOME/scripts"
-if [ -d "$POWERLINE_SCRIPTS" ]; then
-    if [ "${PATH/$POWERLINE_SCRIPTS/}" != "$POWERLINE_SCRIPTS" ]; then
-        export PATH="$PATH:$POWERLINE_SCRIPTS"
-    fi
-fi
-
-export POWERLINE_BINDINGS="$POWERLINE_HOME/powerline/bindings"
-POWERLINE_BASH="$POWERLINE_BINDINGS/bash/powerline.sh"
-if [ -f "$POWERLINE_BASH" ]; then
-    # See: https://powerline.readthedocs.org/en/latest/usage/shell-prompts.html#bash-prompt
-    powerline-daemon -q
-    POWERLINE_BASH_CONTINUATION=1
-    POWERLINE_BASH_SELECT=1
-    source $POWERLINE_BASH
-    export POWERLINE_COMMAND
-    export POWERLINE_CONFIG_COMMAND
-fi
+powerline-daemon -q
+POWERLINE_BASH_CONTINUATION=1
+POWERLINE_BASH_SELECT=1
+. /usr/share/powerline/bindings/bash/powerline.sh
 
 command -v direnv &>/dev/null && eval "$(direnv hook bash)"
 
