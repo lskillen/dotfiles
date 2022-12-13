@@ -43,25 +43,57 @@ function start-agent
     }
 }
 
-command -v pulseaudio &>/dev/null && {
-    pgrep pulseaudio &>/dev/null || pulseaudio --start
-}
-
 start-agent
 
-gpg-agent --daemon
-export GPG_AGENT_INFO=${HOME}/.gnupg/S.gpg-agent:$(pgrep gpg-agent):1
-export GPG_TTY=`tty`
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
+export EDITOR=vim
+export VISUAL=vim
+export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
+export PYTHONDONTWRITEBYTECODE=1
+export AWS_VAULT_PASS_PREFIX=aws-vault
+export AWS_VAULT_BACKEND=pass
+export GOPATH="$HOME/.go"
 export PATH=$PATH:/usr/local/go/bin:$HOME/.go/bin
-
-type chef &>/dev/null && {
-  eval "$(chef shell-init `basename $SHELL`)"
-}
-
 export PATH="$HOME/.cargo/bin:$PATH"
+
+set -o vi
+
+test "$PATH" == *"$HOME/.bin"* || export PATH="$PATH:$HOME/.bin"
+
+if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
+    powerline-daemon -q
+
+fi
+
+if [ -z "$POWERLINE_HOME" ]; then
+  command -v pip &>/dev/null
+  if [ $? -eq 0 ]; then
+      export POWERLINE_HOME="$(pip show powerline-status | grep Location: | awk '{ print $2 }')"
+  fi
+fi
+
+if [ -z "$POWERLINE_HOME" ]; then
+    export POWERLINE_HOME="$HOME/.vim/bundle/powerline"
+fi
+
+POWERLINE_SCRIPTS="$POWERLINE_HOME/scripts"
+if [ -d "$POWERLINE_SCRIPTS" ]; then
+    if [ "${PATH/$POWERLINE_SCRIPTS/}" != "$POWERLINE_SCRIPTS" ]; then
+        export PATH="$PATH:$POWERLINE_SCRIPTS"
+    fi
+fi
+
+export POWERLINE_BINDINGS="$POWERLINE_HOME/powerline/bindings"
+POWERLINE_BASH="$POWERLINE_BINDINGS/bash/powerline.sh"
+if [ -f "$POWERLINE_BASH" ]; then
+    # See: https://powerline.readthedocs.org/en/latest/usage/shell-prompts.html#bash-prompt
+    powerline-daemon -q
+    POWERLINE_BASH_CONTINUATION=1
+    POWERLINE_BASH_SELECT=1
+    source $POWERLINE_BASH
+    export POWERLINE_COMMAND
+    export POWERLINE_CONFIG_COMMAND
+fi
+
+command -v direnv &>/dev/null && eval "$(direnv hook bash)"
+
+[ -n "$TMUX" ] && export TERM=screen-256color
