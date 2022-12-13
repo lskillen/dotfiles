@@ -45,6 +45,12 @@ Usage: ./setup_dotfiles.sh [options]
   -h           Display usage (this text)
 ```
 
+Fonts on WSL
+------------
+
+If you need the powerline fonts on Windows/WSL, follow the instructions here:
+https://www.ricalo.com/blog/install-powerline-windows/
+
 Making Changes
 --------------
 

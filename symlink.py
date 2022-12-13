@@ -9,15 +9,12 @@ SELF = os.path.dirname(os.path.realpath(__file__))
 
 
 class SymLinker(object):
-    def __init__(self, dest_dir=None, dotfiles_dir=None, ignore=None,
+    def __init__(self, dest_dir=None, dotfiles_dir=None, include=None,
                  verbose=False):
         self.dest_dir = dest_dir or os.environ["HOME"]
         self.dotfiles_dir = dotfiles_dir
         self.backup_dir = os.path.join(self.dotfiles_dir, "backup")
-        self.ignore = ignore or [
-            "backup", "README.md", "requirements.txt", "packages.txt",
-            "stages.txt", "setup.sh", "symlink.py", "symlink.pyc"
-        ]
+        self.include = include or [line.strip() for line in open("dotfiles.txt")]
         self.verbose = verbose
 
     @property
@@ -47,13 +44,13 @@ class SymLinker(object):
         listdir = os.listdir(from_path)
 
         if not path:
-            def not_ignored(x):
-                return x not in self.ignore
+            def included(x):
+                return x in self.include
 
             def not_dotfile(x):
                 return not x.startswith('.')
 
-            listdir = filter(not_ignored, listdir)
+            listdir = filter(included, listdir)
             listdir = filter(not_dotfile, listdir)
 
         for name in sorted(listdir):

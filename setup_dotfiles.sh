@@ -134,4 +134,3 @@ setup_vundle
 echo
 echo "You're ready to rock!"
 echo
-echo "Try sourcing your .bashrc ('. ~/.bashrc') or restarting your shell."

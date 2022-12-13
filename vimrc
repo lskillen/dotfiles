@@ -48,9 +48,6 @@ if isdirectory(vundlehome) && &loadplugins
   Plugin 'scrooloose/nerdtree'
   nnoremap <leader>n :NERDTreeToggle<CR>
 
-  " Powerline Status Bar
-  Plugin 'Lokaltog/powerline'
-
   " C++11 Enhanced Highlighting
   Plugin 'octol/vim-cpp-enhanced-highlight'
 
@@ -107,11 +104,6 @@ if isdirectory(vundlehome) && &loadplugins
 
   " Terraform integration
   Plugin 'hashivim/vim-terraform'
-endif
-
-if $POWERLINE_BINDINGS != ""
-  set rtp+=$POWERLINE_BINDINGS/vim/
-  let g:Powerline_symbols = 'fancy'
 endif
 
 filetype plugin indent on " required!
@@ -271,3 +263,5 @@ nnoremap <silent> <C-W>z :ZoomToggle<CR>
 if filereadable(glob("$HOME/.vimrc.local"))
   source $HOME/.vimrc.local
 endif
+
+

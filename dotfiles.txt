@@ -1,0 +1,8 @@
+config
+bash_aliases
+gnupg
+profile
+ssh
+tmux.conf
+vim
+vimrc
