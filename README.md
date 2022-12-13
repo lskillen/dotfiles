@@ -38,13 +38,10 @@ Usage: ./setup.sh [options]
   -i <stage(s)> A CSV-list of stages to execute (default: all)
                    Stages (asterisks are desktop-only):
                     - dotfiles: Link dotfiles.
-                    * colours: Setup terminal colours.
                     * fonts: Setup terminal fonts.
                     * libgcrypt11: Setup libgcrypt11 (Ubuntu 15.04+ only).
                     * packages: Install packages from packages.txt
                     - pip: Install pip/python packages from requirements.txt
-                    - vundle: Install Vim Bundle (Vundle) plugins.
-                    * ycm: Install YouCompleteMe (requires vundle installation).
                    E.g. to only link dotfiles, use -i dotfiles.
   -h           Display usage (this text)
 ```

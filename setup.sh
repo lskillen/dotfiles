@@ -139,20 +139,6 @@ function setup_fonts {
     check_failure || echo " - OK!"
 }
 
-function setup_libgcrypt11 {
-    is_desktop_mode || return 0
-    is_stage_active "libgcrypt11" || return 0
-    echo
-    echo "Setting up libgcrypt11..."
-    dpkg -l | grep libgcrypt11 &>/dev/null &&
-        skip_setup "uninstall libgcrypt11 instead" && return 0
-    local tmp_dir=$(mktemp -d)
-    local deb_file="libgcrypt11_1.5.3-2ubuntu4.2_amd64.deb"
-    wget "https://launchpad.net/ubuntu/+archive/primary/+files/$deb_file" \
-        -O "$tmp_dir/$deb_file"
-    run_as_sudo dpkg -i "$tmp_dir/$deb_file"
-}
-
 function setup_packages {
     is_desktop_mode || return 0
     is_stage_active "packages" || return 0
@@ -171,33 +157,6 @@ function setup_pip {
     echo "Setting up pip..."
     (is_sudo && run_as_sudo pip install --upgrade pip 1>/dev/null) ||
         (is_sudo || run_as_user pip install --user --upgrade pip 1>/dev/null)
-    check_failure || echo " - OK!"
-}
-
-function setup_ycm {
-    is_desktop_mode || return 0
-    is_stage_active "ycm" || return 0
-    local create_only="$1"
-    local bundle_home="$HOME/.vim/bundle"
-    local ycm_home="$bundle_home/YouCompleteMe"
-    if [[ "$create_only" == "true" ]]; then
-        run_as_user mkdir -p "$ycm_home" &>/dev/null
-        return 0
-    else
-        test -d "$ycm_home" ||
-            die "YouCompleteMe home doesn't exist: $ycm_home"
-    fi
-
-    echo
-    echo "Setting up YouCompleteMe (might take awhile)..."
-
-    local ycmd_home="$ycm_home/third_party/ycmd"
-    test -f "$ycmd_home/ycm_core.so" &&
-        test -f "$ycmd_home/ycm_client_support.so" &&
-        skip_setup && return 0
-
-    (cd $ycm_home &&
-        run_as_user ./install.py --clang-completer 1>/dev/null | sed 's/^/ - /')
     check_failure || echo " - OK!"
 }
 
@@ -230,7 +189,6 @@ Usage: ./$self_name [options]
                     - dotfiles: Link dotfiles.
                     * colours: Setup terminal colours.
                     * fonts: Setup terminal fonts.
-                    * libgcrypt11: Setup libgcrypt11 (Ubuntu 15.04+ only).
                     * packages: Install packages from packages.txt
                     - pip: Install pip/python packages from requirements.txt
                     - vundle: Install Vim Bundle (Vundle) plugins.
@@ -291,8 +249,6 @@ setup_dotfiles
 setup_pip
 setup_vundle
 setup_fonts
-setup_colours
-setup_libgcrypt11
 setup_ycm
 
 echo

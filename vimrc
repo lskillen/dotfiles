@@ -15,26 +15,6 @@ if isdirectory(vundlehome) && &loadplugins
   " Solarized colourscheme
   Plugin 'altercation/vim-colors-solarized'
 
-  " Dynamic tags support
-  " See :help ctags
-  " Tag navigation creates a stack which can be traversed with C^] (to find
-  " the source of a token) and C^T (to jump back up one level).
-  " Requires: sudo apt-get install exuberant-ctags
-  Plugin 'xolox/vim-misc'
-  " Plugin 'xolox/vim-easytags'
-  Plugin 'majutsushi/tagbar'
-  let tagshome = vimhome."/tags"
-  exec 'autocmd FileType * set tags='.tagshome
-  set cpoptions+=d
-  let g:easytags_file = tagshome
-  let g:easytags_events = ['BufReadPost', 'BufWritePost']
-  let g:easytags_dynamic_files = 2
-  let g:easytags_async = 1
-  let g:easytags_auto_highlight = 0
-  let g:easytags_resolve_links = 1
-  let g:easytags_suppress_report = 1
-  nmap <silent> <leader>b :TagbarToggle<CR>
-
   " Vim Vundle Package Manager
   Plugin 'gmarik/vundle'
 
@@ -57,24 +37,6 @@ if isdirectory(vundlehome) && &loadplugins
   let g:syntastic_ruby_checkers = ['mri', 'rubocop']
   let g:syntastic_python_pylint_post_args = '--rcfile="`upfind .pylintrc | head`"'
   let g:syntastic_ruby_rubocop_exec = 'chef exec rubocop'
-
-  " Code Semantic Completion
-  if v:version > 703 || v:version == 703 && has("patch584")
-    let ycmhome = vimhome."/bundle/YouCompleteMe"
-    if isdirectory(ycmhome)
-        if filereadable(ycmhome."/ycm_core.so")
-            Plugin 'Valloric/YouCompleteMe'
-            nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-            nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
-            let g:ycm_autoclose_preview_window_after_completion = 1
-            let g:ycm_show_diagnostics_ui = 1
-            let g:ycm_min_num_of_chars_for_completion = 2
-            let g:ycm_confirm_extra_conf = 0
-            let g:ycm_seed_identifiers_with_syntax = 1
-            let g:ycm_key_invoke_completion = '<leader>i'
-        endif
-    endif
-  endif
 
   " Intensely orgasmic commenting (their words, not mine)
   " See: :Help NERD_Commenter.txt
