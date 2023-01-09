@@ -1,5 +1,6 @@
 config
 bash_aliases
+gitconfig
 gnupg
 profile
 ssh

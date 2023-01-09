@@ -3,9 +3,11 @@ direnv
 jq
 p7zip-full
 pass
+powerline
 pre-commit
 python3-dev
 python3-pip
+python-is-python3
 tmux
 virtualenv
 xclip
