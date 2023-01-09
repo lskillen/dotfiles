@@ -10,7 +10,7 @@
 [user]
     name = Lee Skillen
     email = lskillen@cloudsmith.io
-    signingkey = ~/.ssh/id_rsa.pub
+    signingkey = ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCseRD092bPzekqoPSPZMWFwNf6lDPyA29B1FIg4AcpSPIHr3S1flHklTo2UeCBJz2Yfi1kOhgoT8Jawmyit2B1dmAbmbn81Yn4FtFyyXTBiCINlUrxHTGzgtkn+hwA2go5XVsm/eC/x9BUR+ZAfuXJti7ybtDmoHSOG6eythYwyvi4ivCx5yceFOXOcWsuSoyuIVktflzC/UBbvjqbD2SXOEJcqeli0Q42PDKmEeZVkkqSSvBiuZpSj9Y1gfTUK2jCEBX0DPMe9aF4DgOgCXInnILZs5PJoO0FXs2isJh/JfQ4I7q7te+DZ4CFrcfhdl3RyYa90R5YyGMT4LozZ0Wz lskillen@cloudsmith.io
 [core]
     editor = vim
     whitespace = trailing-space, space-before-tab

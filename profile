@@ -55,7 +55,7 @@ export VISUAL=vim
 export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
 export PYTHONDONTWRITEBYTECODE=1
 export AWS_VAULT_PASS_PREFIX=aws-vault
-export AWS_VAULT_BACKEND=pass
+export AWS_VAULT_BACKEND=file
 export GOPATH="$HOME/.go"
 test "$PATH" == *"$HOME/.go/bin" || export PATH=$PATH:/usr/local/go/bin:$HOME/.go/bin
 test "$PATH" == *"$HOME/.cargo/bin"* || export PATH="$HOME/.cargo/bin:$PATH"
